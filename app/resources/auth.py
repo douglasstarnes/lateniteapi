@@ -23,6 +23,22 @@ class LoginResource(Resource):
         access_token = create_access_token(identity=username)
 
         return {"access_token": access_token}, HTTPStatus.OK
-
         
+class RegisterResource(Resource):
+    def post(self):
+        data = request.get_json()
+        username = data["username"]
+        password = data["password"]
 
+        profile = Profile.query.filter_by(username=username).first()
+
+        if profile:
+            return {"error": f"Username {username} already exists"}
+
+        profile = Profile(username=username, password=password)
+        profile.save()
+
+        return {
+            "id": profile.id,
+            "username": profile.username
+        }, HTTPStatus.CREATED

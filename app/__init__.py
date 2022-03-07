@@ -18,11 +18,12 @@ def create_app(config):
     Migrate(app, db)
     api = Api(app)
 
-    from app.resources.auth import LoginResource
+    from app.resources.auth import LoginResource, RegisterResource
     from app.resources.portfolio import PortfolioResource, ManagePortfolioResource
 
     api.add_resource(LoginResource, "/auth/login")
+    api.add_resource(RegisterResource, "/auth/register")
     api.add_resource(PortfolioResource, "/portfolio")
-    api.add_resource(ManagePortfolioResource, "/portfolio/add/<coin_id>")
+    api.add_resource(ManagePortfolioResource, "/portfolio/<coin_id>")
 
     return app
