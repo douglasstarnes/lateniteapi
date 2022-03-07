@@ -1,5 +1,10 @@
-from app import db 
+from app import db, jwt 
 from werkzeug.security import generate_password_hash
+
+@jwt.user_lookup_loader
+def user_lookup_loader(jwt_header, jwt_payload):
+    subject = jwt_payload["sub"]
+    return Profile.query.filter_by(username=subject).first()
 
 class Profile(db.Model):
     __tablename__ = "profile"
