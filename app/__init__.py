@@ -19,11 +19,11 @@ def create_app(config):
     api = Api(app)
 
     from app.resources.auth import LoginResource, RegisterResource
-    from app.resources.portfolio import PortfolioResource, ManagePortfolioResource
+    from app.resources.watchlist import WatchlistResource, ManageWatchlistResource
 
     api.add_resource(LoginResource, "/auth/login")
     api.add_resource(RegisterResource, "/auth/register")
-    api.add_resource(PortfolioResource, "/portfolio")
-    api.add_resource(ManagePortfolioResource, "/portfolio/<coin_id>")
+    api.add_resource(WatchlistResource, "/watchlist")
+    api.add_resource(ManageWatchlistResource, "/watchlist/<coin_id>")
 
     return app

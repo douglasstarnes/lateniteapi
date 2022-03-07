@@ -1,7 +1,7 @@
 from app import db 
 
-class Portfolio(db.Model):
-    __tablename__ = "portfolio"
+class Watchlist(db.Model):
+    __tablename__ = "watchlist"
     id = db.Column(db.Integer, primary_key=True)
     coin_id = db.Column(db.String(64), nullable=False)
     profile_id = db.Column(db.Integer, db.ForeignKey("profile.id"))
