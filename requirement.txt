@@ -5,3 +5,4 @@ Flask-RESTful==0.3.9
 flask-shell-ipython==0.4.1
 Flask-SQLAlchemy==2.5.1
 requests==2.27.1
+psycopg2
