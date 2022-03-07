@@ -5,6 +5,7 @@ from flask_jwt_extended import jwt_required, current_user
 from app.models.profile import Profile
 from app.models.watchlist import Watchlist
 from app.models.coin import Coin
+from app.gecko.simple import price
 
 from app import db 
 
@@ -14,6 +15,7 @@ class WatchlistResource(Resource):
         watchlist = Watchlist.query.filter_by(profile=current_user).all()
         watchlist_dict = {}
         for investment in watchlist:
+            price(investment.coin_id)
             coin = Coin.query.filter_by(coin_id=investment.coin_id).order_by(Coin.timestamp.desc()).first()
             watchlist_dict[coin.coin_id] = coin.current_value
 
